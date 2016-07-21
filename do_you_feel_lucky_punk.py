@@ -3,7 +3,7 @@ import random
 import datetime
 import json
 from six.moves.BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-from scanNetwork import findPs3
+from scan_network import findPs3
 
 
 def randomFreePSMessage():
@@ -24,7 +24,6 @@ def randomTakenPSMessage():
 
 
 def checkForPs3():
-    lastCheck = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     isItTaken = findPs3("70:9e:29:3f:f1:67")
     changeCss = ['''color: green;''', '''color: red;''']
 
@@ -35,7 +34,7 @@ def checkForPs3():
         message = randomFreePSMessage()
         colorCss = changeCss[0]
 
-    return message, colorCss, lastCheck
+    return message, colorCss, datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
 
 class RequestHandler(BaseHTTPRequestHandler):
