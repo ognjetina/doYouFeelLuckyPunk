@@ -38,10 +38,11 @@ def checkForPs3():
 
 
 class RequestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
 
+    def do_GET(self):
+        lastCheck = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
         if self.path == '/json':
-            message, colorCss, lastCheck = checkForPs3()
+            message, colorCss, mylastCheck = checkForPs3()
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
@@ -50,6 +51,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 'lastCheck': lastCheck
             }
             self.wfile.write(json.dumps(response_text))
+            lastCheck=mylastCheck
         elif self.path == '/about':
             self.send_response(200)
             self.send_header('Content-type', 'text/html; charset=utf-8')
@@ -86,7 +88,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             </style>''')
             self.wfile.write(response_text.encode('utf-8'))
         else:
-            message, colorCss, lastCheck = checkForPs3()
+            message, colorCss, mylastCheck = checkForPs3()
             self.send_response(200)
             self.send_header('Content-type', 'text/html; charset=utf-8')
             self.end_headers()
@@ -114,6 +116,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             }
             </style>''')
             self.wfile.write(response_text.encode('utf-8'))
+            lastCheck = mylastCheck
 
 
 server_address = ('', 1337)
