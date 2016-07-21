@@ -34,24 +34,22 @@ def checkForPs3():
         message = randomFreePSMessage()
         colorCss = changeCss[0]
 
-    return message, colorCss, datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    return message, colorCss
 
 
 class RequestHandler(BaseHTTPRequestHandler):
-
     def do_GET(self):
-        lastCheck = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+
         if self.path == '/json':
-            message, colorCss, mylastCheck = checkForPs3()
+            message, colorCss = checkForPs3()
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             response_text = {
-                'message': message,
-                'lastCheck': lastCheck
+                'message': message
             }
             self.wfile.write(json.dumps(response_text))
-            lastCheck=mylastCheck
+
         elif self.path == '/about':
             self.send_response(200)
             self.send_header('Content-type', 'text/html; charset=utf-8')
@@ -88,7 +86,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             </style>''')
             self.wfile.write(response_text.encode('utf-8'))
         else:
-            message, colorCss, mylastCheck = checkForPs3()
+            message, colorCss = checkForPs3()
             self.send_response(200)
             self.send_header('Content-type', 'text/html; charset=utf-8')
             self.end_headers()
@@ -99,7 +97,6 @@ class RequestHandler(BaseHTTPRequestHandler):
             </head>
             <body>
             <h1>''' + message + '''</h1>
-            <h2>Last time someone checked: ''' + lastCheck + '''</h2>
             <a href="/about"><p>about</p></a>
             </body>
             </html>
@@ -116,7 +113,6 @@ class RequestHandler(BaseHTTPRequestHandler):
             }
             </style>''')
             self.wfile.write(response_text.encode('utf-8'))
-            lastCheck = mylastCheck
 
 
 server_address = ('', 1337)
