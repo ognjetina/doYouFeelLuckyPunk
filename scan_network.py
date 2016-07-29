@@ -7,4 +7,4 @@ def getEveryone():
 
 
 def findPs3(ps3Mac):
-    if ps3Mac in getEveryone(): return
+    if ps3Mac in getEveryone(): return True

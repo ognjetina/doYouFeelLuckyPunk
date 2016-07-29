@@ -3,7 +3,7 @@ import random
 import datetime
 import json
 from six.moves.BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-from scan_network import findPs3
+from scan_network import *
 
 
 def randomFreePSMessage():
@@ -18,9 +18,10 @@ def randomFreePSMessage():
 def randomTakenPSMessage():
     messages = [
         "Dammn some one is eather playing or left ps3 on...",
-        "No luck mate!!! PS is taken"
+        "No luck mate!!! PS3 is taken",
+        "PS3 is taken"
     ]
-    return messages[random.randrange(0, 1)]
+    return messages[random.randrange(0, 2)]
 
 
 def checkForPs3():
