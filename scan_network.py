@@ -8,5 +8,5 @@ def get_everyone():
     return subprocess.check_output(batcmd, shell=True)
 
 
-def find_ps3(ps3Mac):
-    if ps3Mac in get_everyone(): return True
+def find_ps3(ps3_mac_address):
+    if ps3_mac_address in get_everyone(): return True

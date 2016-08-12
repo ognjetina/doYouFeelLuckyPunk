@@ -25,24 +25,24 @@ def random_taken_message():
 
 
 def check_for_ps3():
-    isItTaken = find_ps3("70:9e:29:3f:f1:67")
-    changeCss = ['''color: green;''', '''color: red;''']
+    is_ps3_taken = find_ps3("70:9e:29:3f:f1:67")
+    change_css = ['''color: green;''', '''color: red;''']
 
-    if (isItTaken):
+    if (is_ps3_taken):
         message = random_taken_message()
-        colorCss = changeCss[1]
+        color_css = change_css[1]
     else:
         message = random_free_message()
-        colorCss = changeCss[0]
+        color_css = change_css[0]
 
-    return message, colorCss
+    return message, color_css
 
 
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
 
         if self.path == '/json':
-            message, colorCss = check_for_ps3()
+            message, color_css = check_for_ps3()
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
@@ -87,7 +87,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             </style>''')
             self.wfile.write(response_text.encode('utf-8'))
         else:
-            message, colorCss = check_for_ps3()
+            message, color_css = check_for_ps3()
             self.send_response(200)
             self.send_header('Content-type', 'text/html; charset=utf-8')
             self.end_headers()
@@ -104,7 +104,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             <style>
             h1 {
             text-align: center;
-            ''' + colorCss + '''
+            ''' + color_css + '''
             }
             h2 {
             text-align: center;
