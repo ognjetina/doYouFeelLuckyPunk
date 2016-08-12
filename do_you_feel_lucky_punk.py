@@ -6,33 +6,33 @@ from six.moves.BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from scan_network import *
 
 
-def randomFreePSMessage():
+def random_free_message():
     messages = [
-        "Great news ps3 is free",
-        "Dammn you are lucky ps3 is free!",
-        "RUN RUN MAN ps3 is free!"
+        "...great news PS3 is free",
+        "...you are lucky PS3 is free!",
+        "...PS3 is free!"
     ]
     return messages[random.randrange(0, 2)]
 
 
-def randomTakenPSMessage():
+def random_taken_message():
     messages = [
-        "Dammn some one is eather playing or left ps3 on...",
-        "No luck mate!!! PS3 is taken",
-        "PS3 is taken"
+        "...someone is either playing or left PS3 on.",
+        "...no luck mate!!! PS3 is taken.",
+        "...PS3 is taken."
     ]
     return messages[random.randrange(0, 2)]
 
 
-def checkForPs3():
-    isItTaken = findPs3("70:9e:29:3f:f1:67")
+def check_for_ps3():
+    isItTaken = find_ps3("70:9e:29:3f:f1:67")
     changeCss = ['''color: green;''', '''color: red;''']
 
     if (isItTaken):
-        message = randomTakenPSMessage()
+        message = random_taken_message()
         colorCss = changeCss[1]
     else:
-        message = randomFreePSMessage()
+        message = random_free_message()
         colorCss = changeCss[0]
 
     return message, colorCss
@@ -42,7 +42,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
 
         if self.path == '/json':
-            message, colorCss = checkForPs3()
+            message, colorCss = check_for_ps3()
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
@@ -87,7 +87,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             </style>''')
             self.wfile.write(response_text.encode('utf-8'))
         else:
-            message, colorCss = checkForPs3()
+            message, colorCss = check_for_ps3()
             self.send_response(200)
             self.send_header('Content-type', 'text/html; charset=utf-8')
             self.end_headers()
