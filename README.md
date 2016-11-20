@@ -32,4 +32,11 @@ since the app is using arpscan you need to start it as sudo.
 sudo python manage.py runserver
 ```
 
+NOTE:
 
+You will need additional things on your rasp
+
+python-dev tools
+```
+sudo apt-get install libpq-dev python-dev
+```

@@ -1,5 +1,7 @@
-from django.views.decorators.csrf import csrf_exempt
-from django.http.response import HttpResponse
+from rasp_do_you_feel_lucky_punk_services import do_you_feel_lucky_punk
+from django.http import JsonResponse
 
-def hello_world(request):
-    return HttpResponse('hello world')
+
+def is_ps3_online(request):
+    result = do_you_feel_lucky_punk.check_is_ps3_on_network()
+    return JsonResponse({'result': result})
