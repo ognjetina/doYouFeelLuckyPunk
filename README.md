@@ -1,47 +1,29 @@
-# Django project template
-You can create a new project from this template by running this inside a
-Python 3 virtual environment. Make sure to install Django 1.9+ inside the
-environment and use its django-admin.py:
+DO YOU FEELE LUCKY PUNK
+=========================
+Do you feel lucky punk is a small web app written in pure Python for learning purposes.
 
-```
-$ virtualenv --python=python3 venv
-$ . venv/bin/activate
-$ pip install pip install Django==1.10
-$ venv/bin/django-admin startproject [project_name] \
-  --template https://github.com/codecentric-labs-zero/django-project-template/archive/master.zip \
-  --name .flooignore,.gitignore,Procfile,.env \
-  --extension py,md,txt,sh,ini,yml
-```
+App is starting server on hosts ip address with port 1337.
+You can get json response if you visit /json.
 
-If necessary, make script executable:
+App is simply scaning our local network and searching for our playstation 3 mac address,if the mac address is not present on network we assume that no one is playing ps3.
 
-```
-$ chmod u+x bootstrap.sh
-```
+And yes I know that the app wont be telling the truth if some one leaves ps3 turned on but that's a human error.
+Installation
+-----------
+App uses apr-scan
 
-Create continuous delivery pipeline and Heroku apps:
-
+run:
 ```
-$ export GITHUB_TOKEN=[your github token]
-$ export CIRCLE_TOKEN=[your circle token]
-$ heroku login
-$ ./bootstrap.sh
+sudo apt-get install arp-scan
+```
+clone project get inside of project and run:
+```
+sudo pip install -r requirements.txt
 ```
 
-Please note that this can only be done once and that you'll need to be part
-of the codecentric-labs-zero organizations on Heroku and GitHub for this to work.
-
-If you prefer not to set up the delivery pipeline, you can simply prepare the
-project for development:
-
+start the app:
 ```
-$ chmod u+x manage.py
-$ chmod u+x merge-base-ff.sh
-$ rm bootstrap.sh
-$ echo "# [project name]" > README.md
-$ pip install -r requirements.txt
-$ ./manage.py migrate
-$ py.test
-$ git init
-$ git commit -am "Initial project setup"
+sudo python do_you_feel_lucky_punk.py
 ```
+since the app is using arpscan you need to start it as sudo.
+
