@@ -10,6 +10,12 @@ App is simply scaning our local network and searching for our playstation 3 mac 
 And yes I know that the app wont be telling the truth if some one leaves ps3 turned on but that's a human error.
 Installation
 -----------
+Clone the app
+
+run:
+```
+git clone https://github.com/ognjetina/doYouFeelLuckyPunk.git
+```
 App uses apr-scan
 
 run:
