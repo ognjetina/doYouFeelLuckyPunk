@@ -13,23 +13,23 @@ Installation
 Clone the app
 
 run:
-```
-git clone https://github.com/ognjetina/doYouFeelLuckyPunk.git
-```
-App uses apr-scan
+
+App uses apr-scan so install it
 
 run:
 ```
 sudo apt-get install arp-scan
 ```
-clone project get inside of project and run:
+
+Get inside of project and run:
 ```
 sudo pip install -r requirements.txt
 ```
 
-start the app:
-```
-sudo python do_you_feel_lucky_punk.py
-```
+Start the app:
 since the app is using arpscan you need to start it as sudo.
+```
+sudo python manage.py runserver
+```
+
 
