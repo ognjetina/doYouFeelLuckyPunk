@@ -2,8 +2,7 @@ import subprocess
 
 
 def get_everyone_on_network():
-    batcmd = "sudo arp-scan -l"
-    return subprocess.check_output(batcmd, shell=True)
+    return subprocess.check_output("sudo arp-scan -l", shell=True)
 
 
 def is_device_on_network(device_mac_address):
